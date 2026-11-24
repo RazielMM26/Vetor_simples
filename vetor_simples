@@ -1,0 +1,43 @@
+using System;
+
+public class Program {
+	public static void Main() {
+		
+		String[] alunos = new String[6];
+		string aluno_busca;
+		string opcao_busca, opcao_edit;
+		
+		for (int i = 0; i <= 5; i++)
+		{
+			Console.WriteLine("Insira o nome do aluno: ");
+			alunos[i] = Console.ReadLine();
+		}
+		
+		Console.WriteLine("Gostaria de buscar um aluno? (s/n)");
+		opcao_busca = Console.ReadLine();
+		
+		if (opcao_busca == "s") 
+		{
+			Console.WriteLine("Insira o nome que você deseja buscar: ");
+			aluno_busca = Console.ReadLine();
+			
+			for (int i = 0; i <= 5; i++)
+			{
+				if (aluno_busca == alunos[i])
+				{
+					Console.WriteLine("Aluno encontrado!");
+					Console.WriteLine("O aluno " + aluno_busca + " foi encontrado na posição " + i + " do vetor!");
+					
+					Console.WriteLine("Gostaria de editar o nome de usuario? (s/n)");
+					opcao_edit = Console.ReadLine();
+				
+					if (opcao_edit == "s"){
+						Console.WriteLine($"Digite o novo valor: ");
+						alunos[i] = Console.ReadLine();
+						
+					} else {Console.WriteLine("Aluno não encontrado.");}
+				}
+			}
+		}
+	}
+}
