@@ -1,43 +1,56 @@
 using System;
 
-public class Program {
-	public static void Main() {
-		
-		String[] alunos = new String[6];
-		string aluno_busca;
-		string opcao_busca, opcao_edit;
-		
-		for (int i = 0; i <= 5; i++)
-		{
-			Console.WriteLine("Insira o nome do aluno: ");
-			alunos[i] = Console.ReadLine();
-		}
-		
-		Console.WriteLine("Gostaria de buscar um aluno? (s/n)");
-		opcao_busca = Console.ReadLine();
-		
-		if (opcao_busca == "s") 
-		{
-			Console.WriteLine("Insira o nome que você deseja buscar: ");
-			aluno_busca = Console.ReadLine();
-			
-			for (int i = 0; i <= 5; i++)
-			{
-				if (aluno_busca == alunos[i])
-				{
-					Console.WriteLine("Aluno encontrado!");
-					Console.WriteLine("O aluno " + aluno_busca + " foi encontrado na posição " + i + " do vetor!");
-					
-					Console.WriteLine("Gostaria de editar o nome de usuario? (s/n)");
-					opcao_edit = Console.ReadLine();
-				
-					if (opcao_edit == "s"){
-						Console.WriteLine($"Digite o novo valor: ");
-						alunos[i] = Console.ReadLine();
-						
-					} else {Console.WriteLine("Aluno não encontrado.");}
-				}
-			}
-		}
-	}
-}
+public class Program
+{
+    public static void Main()
+    {
+        do
+        {
+            string[] alunos = new string[6];
+            for (int i = 0; i < 6; i++)
+            {
+                Console.Write("Insira o nome do aluno: ");
+                alunos[i] = Console.ReadLine();
+            }
+
+            Console.Write("Gostaria de buscar um aluno? (s/n) ");
+            string opcao_busca = Console.ReadLine();
+
+            if (opcao_busca == "s")
+            {
+                Console.Write("Insira o nome que você deseja buscar: ");
+                string aluno_busca = Console.ReadLine();
+
+                int posicao = -1;
+                for (int i = 0; i < 6; i++)
+                {
+                    if (aluno_busca == alunos[i])
+                    {
+                        posicao = i;
+                        break; // ← para de procurar
+                    }
+                }
+
+                if (posicao != -1)
+                {
+                    Console.WriteLine($"Aluno encontrado na posição {posicao}!");
+                    Console.Write("Gostaria de editar o nome? (s/n) ");
+                    string opcao_edit = Console.ReadLine();
+                    if (opcao_edit == "s")
+                    {
+                        Console.Write("Digite o novo valor: ");
+                        alunos[posicao] = Console.ReadLine();
+                        Console.WriteLine("Nome atualizado.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Aluno não encontrado.");
+                }
+            }
+
+            Console.Write("Gostaria de iniciar o processo novamente? (s/n) ");
+            string opcao_loop = Console.ReadLine();
+        } while (opcao_loop == "s");
+    }
+}   
